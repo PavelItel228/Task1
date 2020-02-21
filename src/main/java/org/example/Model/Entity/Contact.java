@@ -20,8 +20,8 @@ public class Contact {
     private long id;
     private String firstName;
     private String lastName;
-    private List<PhoneNumber> phones = new ArrayList<>();
-    private List<SkypeLogin> skypes = new ArrayList<>();
-    private List<Email> emails = new ArrayList<>();
+    private List<PhoneNumber> phones;
+    private List<SkypeLogin> skypes;
+    private List<Email> emails;
 
 }

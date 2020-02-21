@@ -128,14 +128,14 @@ public class Controller {
             if (res.equals(View.FOUR)) {
                 newContact.phones(phones).skypes(skypes).emails(emails);
                 Contact contact = newContact.build();
-                if (contactService.isExists(contact)){
+                if (contactService.isExists(contact)) {
                     view.printMessage(view.MERGE);
                     view.printYesOrNo();
                     while (!(scan.hasNext() && ((res = scan.next()).equals(View.ONE) || res.equals(View.TWO)))) {
                         view.printMessage(view.WRONG_INPUT);
                         view.printYesOrNo();
                     }
-                    if (res.equals(View.ONE)){
+                    if (res.equals(View.ONE)) {
                         contactService.mergeContacts(contact);
                     }
                 }
@@ -153,13 +153,14 @@ public class Controller {
         firstName = scan.next();
         view.printMessage(view.INPUT_LAST_NAME);
         lastName = scan.next();
-        newContact.firstName(firstName).lastName(lastName);;
+        newContact.firstName(firstName).lastName(lastName);
+        ;
         Contact contact = contactService.getContactByFullName(firstName, lastName);
-        if(contact != null) {
+        if (contact != null) {
             view.printUsers(new ArrayList<Contact>() {{
                 add(contact);
             }});
-        }else {
+        } else {
             view.printMessage(view.NOT_FOUND);
         }
     }

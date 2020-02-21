@@ -15,12 +15,11 @@ public class ContactService {
         this.contactDAO = contactDAO;
     }
 
-    public Contact saveContact(Contact contact) {
+    public void saveContact(Contact contact) {
         contactDAO.save(contact);
-        return contact;
     }
 
-    public Contact mergeContacts(Contact contact) {
+    public void mergeContacts(Contact contact) {
         Contact contactToMerge = contactDAO.getByFirstNameAndLastName(contact.getFirstName(),
                 contact.getLastName());
         List<PhoneNumber> phones = contactToMerge.getPhones();
@@ -30,7 +29,6 @@ public class ContactService {
         contact.getEmails().addAll(emails);
         contact.getSkypes().addAll(skypeLogins);
         contactDAO.delete(contactToMerge);
-        return contact;
     }
 
     public boolean isExists(Contact contact) {
@@ -38,7 +36,7 @@ public class ContactService {
     }
 
     public Contact getContactByFullName(String firstName, String lastName) {
-       return contactDAO.getByFirstNameAndLastName(firstName, lastName);
+        return contactDAO.getByFirstNameAndLastName(firstName, lastName);
     }
 
     public List<Contact> getAllContacts() {

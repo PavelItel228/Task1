@@ -18,18 +18,18 @@ public class ContactDAO implements DAO<Contact> {
         contacts.add(Contact.builder().id(0).firstName("Саша")
                 .lastName("Иванов")
                 .phones(phones)
-                .emails(new ArrayList<Email>())
-                .skypes(new ArrayList<SkypeLogin>())
+                .emails(new ArrayList<>())
+                .skypes(new ArrayList<>())
                 .build());
         contacts.add(Contact.builder().id(1).firstName("Ваня").lastName("Петров")
-                .emails(new ArrayList<Email>())
-                .phones(new ArrayList<PhoneNumber>())
-                .skypes(new ArrayList<SkypeLogin>())
+                .emails(new ArrayList<>())
+                .phones(new ArrayList<>())
+                .skypes(new ArrayList<>())
                 .build());
         contacts.add(Contact.builder().id(2).firstName("Вова").lastName("Орлов")
-                .emails(new ArrayList<Email>())
-                .phones(new ArrayList<PhoneNumber>())
-                .skypes(new ArrayList<SkypeLogin>())
+                .emails(new ArrayList<>())
+                .phones(new ArrayList<>())
+                .skypes(new ArrayList<>())
                 .build());
     }
 
@@ -52,6 +52,7 @@ public class ContactDAO implements DAO<Contact> {
     public void save(Contact contact) {
         contacts.add(contact);
     }
+
     public void updatePhones(Contact contact, PhoneNumber phoneNumber) {
         if (this.getById(contact.getId()).isPresent()) {
             contact.getPhones().add(phoneNumber);
@@ -82,12 +83,7 @@ public class ContactDAO implements DAO<Contact> {
     }
 
     public List<Contact> getAllSortedByName() {
-        contacts.sort(new Comparator<Contact>() {
-            @Override
-            public int compare(Contact contact1, Contact contact2) {
-                return contact1.getFirstName().compareTo(contact2.getFirstName());
-            }
-        });
+        contacts.sort(Comparator.comparing(Contact::getFirstName));
         return contacts;
     }
 }
